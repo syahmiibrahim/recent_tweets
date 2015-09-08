@@ -4,4 +4,25 @@ $(document).ready(function() {
   // when we try to bind to them
 
   // See: http://docs.jquery.com/Tutorials:Introducing_$(document).ready()
+  	$('#submit-tweet').click(function(event){
+  		event.preventDefault();
+  		$('#loading_img').show();
+  		$.ajax({
+  			url: "/tweet/search",
+  			method: "POST",
+  			data: $("#fetch-tweets").serialize(),
+  			cache: false,
+  			success: function(response){
+  				$("#status").html(response);
+  				$("#loading_img").hide();
+  			},
+  			error: function(){
+  				$("#status").html("</br>Unable to search the Tweethandle")
+  				$("#loading_img").hide();
+  			}
+  		// }).done(function(response){
+  		// 	$('#status').html(response);
+  		// 	$('#loading_img').hide();
+  		});
+  	});
 });
