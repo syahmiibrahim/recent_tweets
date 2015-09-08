@@ -1,0 +1,8 @@
+<div class="container">
+<h2><%=@user.username %>'s recent tweets:</h2>
+<% count = 1 %>
+<p><% @recent_tweets.each do |tweet| %></p>
+<p><b><%= count %></b>. <%= tweet.text %></p>
+<% count += 1 %>
+<% end %>
+</div>
