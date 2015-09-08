@@ -11,7 +11,8 @@ class User < ActiveRecord::Base
   end
 
   def tweets_stale?
-      if ($twitter.user_timeline(self.username).first.created_at > self.tweets.first.created_at)
+    @user_time = self.tweets
+      if (Time.now - @user_time.first.created_at)/60 > 15
         return true
       else
         return false

@@ -1,8 +1,9 @@
 <div class="container">
+<img src="ajax-loader.gif">
 <h2><%=@user.username %>'s recent tweets:</h2>
-<% count = 1 %>
+<ol>
 <p><% @recent_tweets.each do |tweet| %></p>
-<p><b><%= count %></b>. <%= tweet.text %></p>
-<% count += 1 %>
+	<li><p> <%= tweet.text %></p></li>
 <% end %>
+</ol>
 </div>

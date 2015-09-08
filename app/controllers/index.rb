@@ -7,12 +7,13 @@ get '/:username' do
   @user = User.find_or_create_by(username: params[:username])
 
   if @user.tweets_stale?
-    @user.tweets.destroy_all
-    @user.recent_tweets 
+    @user.tweets.each {|tweet| tweet.destroy_all }
+    @recent_tweets = @user.recent_tweets 
+    erb :user_tweets
     end
 
-    @recent_tweets = @user.recent_tweets
-  erb :user_tweets
+    @recent_tweets = @user.tweets
+    erb :user_tweets
 
 end
 
